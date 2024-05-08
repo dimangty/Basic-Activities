@@ -10,20 +10,18 @@ import otus.gpb.homework.activities.databinding.ActivityABinding
 
 
 class ActivityA : AppCompatActivity() {
+  private lateinit var binding: ActivityABinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_a)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
 
-        val button: Button = findViewById(R.id.openButton)
-        button.setOnClickListener {
+        binding = ActivityABinding.inflate(layoutInflater)
+        binding.openButton.setOnClickListener {
             val intent = Intent().setClass(applicationContext, ActivityB::class.java)
                 .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_MULTIPLE_TASK)
             startActivity(intent)
         }
+
+        val view = binding.root
+        setContentView(view)
     }
 }

@@ -6,38 +6,36 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import otus.gpb.homework.activities.databinding.ActivityBBinding
+import otus.gpb.homework.activities.databinding.ActivityCBinding
 
 class ActivityC : AppCompatActivity() {
+    private lateinit var binding: ActivityCBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_c)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
 
-        var button: Button = findViewById(R.id.openA_button)
-        button.setOnClickListener {
+        binding = ActivityCBinding.inflate(layoutInflater)
+        binding.openAButton.setOnClickListener {
             val intent = Intent(this, ActivityA::class.java)
             startActivity(intent)
         }
 
-        button = findViewById(R.id.openD_button)
-        button.setOnClickListener {
+        binding.openDButton.setOnClickListener {
             finishAffinity()
             val intent= Intent(this, ActivityD::class.java)
             startActivity(intent)
         }
 
-        button = findViewById(R.id.closeC_Button)
-        button.setOnClickListener {
+        binding.closeCButton.setOnClickListener {
             finish()
         }
 
-        button = findViewById(R.id.closeStack_Button)
-        button.setOnClickListener {
+        binding.closeStackButton.setOnClickListener {
             finishAffinity()
         }
+
+        val view = binding.root
+        setContentView(view)
     }
 }
