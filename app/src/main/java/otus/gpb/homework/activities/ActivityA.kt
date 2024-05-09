@@ -2,6 +2,7 @@ package otus.gpb.homework.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -11,6 +12,7 @@ import otus.gpb.homework.activities.databinding.ActivityABinding
 
 class ActivityA : AppCompatActivity() {
   private lateinit var binding: ActivityABinding
+  val TAG = this.javaClass.simpleName
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -23,5 +25,10 @@ class ActivityA : AppCompatActivity() {
 
         val view = binding.root
         setContentView(view)
+    }
+
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        Log.i(TAG, "On new intent")
     }
 }
